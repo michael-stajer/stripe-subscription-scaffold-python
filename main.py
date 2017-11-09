@@ -17,12 +17,45 @@
 import webapp2
 import jinja2
 import os
+import stripe
+
+stripe.api_key = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     autoescape=True,
     extensions=['jinja2.ext.autoescape'])
+
+
+class SubscribeHandler(webapp2.RequestHandler):
+    def post(self):
+        form_stripeToken = self.request.get('stripeToken')
+        form_keys = self.request.params
+        # 1. check for valid stripeToken
+
+        # 2. upsert stripe_customer_id with stripeToken
+        # - if we are downgrading to free plan, no stripeToken
+
+        # 3. subscribe stripe_customer_id to plan
+
+        # 4. display confirmation
+
+        customer = stripe.Customer.create(
+            email="jenny.rosen@example.com",
+            source=form_stripeToken,
+        )
+
+        variables = {
+            'st': form_stripeToken,
+            'keys': form_keys,
+            'stripe_customer': customer,
+            'stripe_customer_id': customer.id
+        }
+
+        template = 'templates/subscribe.html'
+        template = JINJA_ENVIRONMENT.get_template(template)
+        self.response.write(template.render(variables))
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -34,5 +67,6 @@ class MainHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/subscribe', SubscribeHandler)
 ], debug=True)

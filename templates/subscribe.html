@@ -1,0 +1,25 @@
+thank you for subscribing.
+
+<br>
+st: {{ st }}
+
+<br>
+
+keys: {{ keys }}
+
+<br>
+
+stripe_customer_id: {{ stripe_customer_id }}
+
+<br>
+
+{% for key in stripe_customer %}
+	{{ key }}: {{stripe_customer[key] }}<br>
+{% endfor %}
+
+<br>
+{% for key in keys %}
+{{ key }}: {{ keys[key] }}<br>
+{% endfor %}
+
+<p><a href='/'>Start Over</a></p>

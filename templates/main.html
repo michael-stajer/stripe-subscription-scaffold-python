@@ -1,24 +1,31 @@
 <html>
 
 <head>
+
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
 </head>
 
 <body>
 
 <h1>Select a Plan</h1>
 
-<form>
+	<p>Your current plan is: <i>name_of_current_plan</i>.</p>
+	<form method="post" action='/subscribe'>
+		<p>Select a new plan below or <button type="button" class="btn btn-link" style='padding:0px;' onclick='submit()'>downgrade to free plan</button>.
+		<input type='hidden' name='plan' value='free'>
+	</form>
 
-<table>
-	<tr>
-		<td>
+
+	<form method="post" action='/subscribe'>
+
 	
-		<h2>Free</h2>
+		<h2>Annual $39</h2>
 		  <script
 		    src="https://checkout.stripe.com/checkout.js" 
 		    class="stripe-button"
 		    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-		    data-amount="0"
+		    data-amount="3900"
 		    data-name="Store-Name"
 		    data-description="Subscription Description"
 		    data-allow-remember-me='false'
@@ -26,20 +33,20 @@
 		    data-locale="auto"
 		    data-zip-code="true"
 		    data-email='customer@email.com'
-		    data-panel-label="Subscribe for {{ amount }} a month"
+		    data-panel-label="Subscribe Annual"
 		    data-label="Subscribe">
 
 		  </script>
-  		</td>
+		  <input type='hidden' name='plan' value='annual'>
+		 </form>
 
-		<td>
-	
-		<h2>Bronze $30</h2>
+		<form method="post" action='/subscribe'>
+		<h2>Monthly $4</h2>
 		  <script
 		    src="https://checkout.stripe.com/checkout.js" 
 		    class="stripe-button"
 		    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-		    data-amount="3000"
+		    data-amount="400"
 		    data-name="Store-Name"
 		    data-description="Subscription Description"
 		    data-allow-remember-me='false'
@@ -47,35 +54,13 @@
 		    data-locale="auto"
 		    data-zip-code="true"
 		    data-email='customer@email.com'
-		    data-panel-label="Subscribe for {{ amount }} a month"
+		    data-panel-label="Subscribe Monthly"
 		    data-label="Subscribe">
 
 		  </script>
-  		</td>
+		  		  <input type='hidden' name='plan' value='monthly'>
 
-		<td>
-	
-		<h2>Silver $40</h2>
-		  <script
-		    src="https://checkout.stripe.com/checkout.js" 
-		    class="stripe-button"
-		    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-		    data-amount="4000"
-		    data-name="Store-Name"
-		    data-description="Subscription Description"
-		    data-allow-remember-me='false'
-		    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-		    data-locale="auto"
-		    data-zip-code="true"
-		    data-email='customer@email.com'
-		    data-panel-label="Subscribe for {{ amount }} a month"
-		    data-label="Subscribe">
 
-		  </script>
-  		</td>
-  	</tr>
-
-  </table>
 
 
 </form>
