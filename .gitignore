@@ -97,3 +97,4 @@ ENV/
 
 # mypy
 .mypy_cache/
+docs/todo.md
