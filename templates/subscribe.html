@@ -17,6 +17,12 @@ stripe_customer_id: {{ stripe_customer_id }}
 	{{ key }}: {{stripe_customer[key] }}<br>
 {% endfor %}
 
+br>
+
+{% for key in stripe_subscribe %}
+	{{ key }}: {{stripe_subscribe[key] }}<br>
+{% endfor %}
+
 <br>
 {% for key in keys %}
 {{ key }}: {{ keys[key] }}<br>
